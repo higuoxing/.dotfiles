@@ -13,6 +13,8 @@ Plugin 'git://github.com/scrooloose/nerdtree.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -85,4 +87,22 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1     
 let g:miniBufExplMapCTabSwitchBufs = 1     
 let g:miniBufExplModSelTarget = 1    
-let g:miniBufExplMoreThanOne=0
+let g:miniBufExplMoreThanOne=0 
+
+" >>winManager
+let g:NERDTree_title="[NERDTree]"
+let g:winManagerWindowLayout="NERDTree|TagList"
+
+function! NERDTree_Start()
+    exec 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+    return 1
+endfunction
+nmap wm : WMToggle<CR>
+
+" >>vim air-line
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
