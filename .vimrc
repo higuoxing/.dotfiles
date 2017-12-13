@@ -39,13 +39,15 @@ set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 set autowrite		" Automatically save before commands like :next and :make
-set hidden		" Hide buffers when they are abandoned
+set hidden		    " Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
 set number              " set numbers
 set ruler               " set ruler
 set hlsearch            " highlight searching word
 set incsearch           " highlight in searching word
 set autoindent          " auto indent on
+set cindent
+set cinoptions=g-1
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
