@@ -15,6 +15,7 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'majutsushi/tagbar'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -73,16 +74,7 @@ let NERDTreeStatusline=0
 "
 " >>TagList
 filetype on
-let Tlist_Auto_Open=1
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Use_Right_Window=1
-let Tlist_WinHeight=30
-let Tlist_WinWidth=25
-" Reduce blank lines in Tlist
-let Tlist_Compact_Format=1
-let Tlist_Show_Menu=1
-map <C-t> : TlistToggle <CR>
+map <C-t> :TagbarToggle<CR>
 
 " >>minibufexpl
 let g:miniBufExplMapWindowNavVim = 1     
@@ -108,3 +100,4 @@ nmap wm : WMToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
