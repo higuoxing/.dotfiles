@@ -16,6 +16,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'dracula/vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -30,9 +32,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-if has("syntax")
-    syntax on
-endif
+syntax on
+filetype plugin indent on
 
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
@@ -53,7 +54,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab           " set indent -> 4 spaces
-
+color dracula
 " Plugin config
 " >>NerdTree
 " Open a NerdTree automatically when vim starts up and no files were specified
@@ -73,7 +74,6 @@ let NERDTreeStatusline=0
 " let NERDChristmasTree=1
 "
 " >>TagList
-filetype on
 map <C-t> :TagbarToggle<CR>
 
 " >>minibufexpl
@@ -101,3 +101,5 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+" >> haskell-support
+let g:haskell_classic_highlighting = 1
