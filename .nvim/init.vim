@@ -11,7 +11,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     " Tool Plugins
     "===--------------------------------------------
     Plug 'vim-airline/vim-airline'                          " airline tab status tool
-    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }  " navigation tree
+    Plug 'scrooloose/nerdtree'                              " navigation tree
     Plug 'yggdroot/indentline'                              " indent
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }      " tagbar
 
@@ -20,7 +20,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     "===--------------------------------------------
     Plug 'dracula/vim', { 'as': 'dracula' }  " dracula theme
     Plug 'vim-airline/vim-airline-themes'    " airline theme
-    Plug 'kien/rainbow_parentheses.vim'      " rainbow parentheses
+"    Plug 'kien/rainbow_parentheses.vim'      " rainbow parentheses
 
 " }
 
@@ -98,29 +98,30 @@ set nu                                     " line number
     let g:indentLine_enabled = 1
 " }
 
+" To use raibow parentheses, please uncomment lines below
 " Rainbow Parentheses Config {
-    let g:rbpt_max = 16
-    let g:rbpt_loadcmd_toggle = 0
-    let g:rbpt_colorpairs = [
-      \ ['brown',       'RoyalBlue3'],
-      \ ['red',         'firebrick3'],
-      \ ['Darkblue',    'SeaGreen3'],
-      \ ['darkgray',    'DarkOrchid3'],
-      \ ['darkgreen',   'firebrick3'],
-      \ ['darkcyan',    'RoyalBlue3'],
-      \ ['darkred',     'SeaGreen3'],
-      \ ['darkmagenta', 'DarkOrchid3'],
-      \ ['brown',       'firebrick3'],
-      \ ['gray',        'RoyalBlue3'],
-      \ ['black',       'SeaGreen3'],
-      \ ['darkmagenta', 'DarkOrchid3'],
-      \ ['Darkblue',    'firebrick3'],
-      \ ['darkgreen',   'RoyalBlue3'],
-      \ ['darkcyan',    'SeaGreen3'],
-      \ ['darkred',     'DarkOrchid3'],
-      \ ]
-    au VimEnter * RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
+"    let g:rbpt_max = 16
+"    let g:rbpt_loadcmd_toggle = 0
+"    let g:rbpt_colorpairs = [
+"      \ ['brown',       'RoyalBlue3'],
+"      \ ['red',         'firebrick3'],
+"      \ ['Darkblue',    'SeaGreen3'],
+"      \ ['darkgray',    'DarkOrchid3'],
+"      \ ['darkgreen',   'firebrick3'],
+"      \ ['darkcyan',    'RoyalBlue3'],
+"      \ ['darkred',     'SeaGreen3'],
+"      \ ['darkmagenta', 'DarkOrchid3'],
+"      \ ['brown',       'firebrick3'],
+"      \ ['gray',        'RoyalBlue3'],
+"      \ ['black',       'SeaGreen3'],
+"      \ ['darkmagenta', 'DarkOrchid3'],
+"      \ ['Darkblue',    'firebrick3'],
+"      \ ['darkgreen',   'RoyalBlue3'],
+"      \ ['darkcyan',    'SeaGreen3'],
+"      \ ['darkred',     'DarkOrchid3'],
+"      \ ]
+"    au VimEnter * RainbowParenthesesToggle
+"    au Syntax * RainbowParenthesesLoadRound
+"    au Syntax * RainbowParenthesesLoadSquare
+"    au Syntax * RainbowParenthesesLoadBraces
 " }
