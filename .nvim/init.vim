@@ -33,7 +33,15 @@ call plug#end()
 " Key bindings {
     " nmap <C-n> : NERDTreeToggle<CR> " NerdTree key binding
     " nmap <C-t> :TagbarToggle<CR>    " tagbar key binding
+    " tnoremap <Esc> <C-\><C-n>
+    " nnoremap <leader>o :below 10sp term://$SHELL<cr>i
 " }
+
+" Terminal Config {
+     tnoremap <Esc> <C-\><C-n>
+     nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+" }
+
 
 " language indention {
     " default settings {
@@ -90,7 +98,7 @@ set nu                                     " line number
 " }
 
 " Tagbar Config {
-	  let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+	  let g:tagbar_ctags_bin='/usr/bin/ctags'
     nmap <C-t> :TagbarToggle<CR>
 " }
 
