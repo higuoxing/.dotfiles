@@ -41,8 +41,8 @@ call plug#end()
 " language indention {
     " default settings {
         set shiftwidth=2    " indent is 2 spaces
-	      set softtabstop=2   " indent is 2 spaces
-	      set tabstop=2       " indent is 2 spaces
+        set softtabstop=2   " indent is 2 spaces
+        set tabstop=2       " indent is 2 spaces
         set expandtab       " always using tab
     " }
 
@@ -114,7 +114,7 @@ syntax on                                  " set syntax highlight on
 " }
 
 " Tagbar Config {
-	  let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+    let g:tagbar_ctags_bin='/usr/local/bin/ctags'
     nmap <C-t> :TagbarToggle<CR>
 " }
 
@@ -164,4 +164,3 @@ syntax on                                  " set syntax highlight on
   let g:javascript_conceal_super                = "Ω"
   let g:javascript_conceal_arrow_function       = "⇒"
 " }
-
