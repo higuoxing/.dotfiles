@@ -15,15 +15,18 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'yggdroot/indentline'                              " indent
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }      " tagbar
     Plug 'jiangmiao/auto-pairs'                             " auto pairs
-    Plug 'godlygeek/tabular'														" Tabulize code
+    Plug 'godlygeek/tabular'														" tabulize code
+    Plug 'fidian/hexmode'                                   " hexmode
+    Plug 'ap/vim-buftabline'                                " tab
 
     "===--------------------------------------------
     " Apperance Plugins
     "===--------------------------------------------
     Plug 'dracula/vim', { 'as': 'dracula' }  " dracula theme
+    Plug 'tomasiser/vim-code-dark'
+    Plug 'kristijanhusak/vim-hybrid-material'
     Plug 'itchyny/lightline.vim'
     Plug 'kien/rainbow_parentheses.vim'      " rainbow parentheses
-
 " }
 
 call plug#end()
@@ -73,8 +76,21 @@ set nu                                     " line number
 set cursorline                             " highlight row
 set cursorcolumn                           " highlight column
 set noshowmode                             " do not show mode
-color dracula                              " using dracula theme
 syntax on                                  " set syntax highlight on
+
+" Color Scheme& Plugins {
+    set background=dark
+"   colorscheme {
+"     colorscheme codedark
+"     color dracula
+      colorscheme hybrid_material "{
+      " font settings {
+          let g:enable_bold_font=1
+          "let g:enable_italic_font=1
+        " }
+      " }
+"   }
+" }
 
 "===--------------------------------------------
 " Plugin Configs
@@ -97,11 +113,10 @@ syntax on                                  " set syntax highlight on
       \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
       \ },
       \ 'component': {
-      \   'helloworld': 'Hello, world!'
+      \   'helloworld': 'Cheers!'
       \ },
       \ }
 " }
-
 
 " NerdTree Config {
     nmap <C-n> : NERDTreeToggle<CR>
@@ -111,6 +126,12 @@ syntax on                                  " set syntax highlight on
     " autocmd vimenter * NERDTree            " Start NerdTree when open vim
     " autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif  " open nerdtree if no file is specified
+" }
+
+" Buffer Config {
+    set hidden
+    nnoremap <C-n> :bnext <CR>
+    nnoremap <C-p> :bprev <CR>
 " }
 
 " Tagbar Config {
