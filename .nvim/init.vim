@@ -119,7 +119,7 @@ syntax on                                  " set syntax highlight on
 " }
 
 " NerdTree Config {
-    nmap <C-n> : NERDTreeToggle<CR>
+    nmap <C-m> : NERDTreeToggle<CR>
     " Close NERDTree if there is only one tab and it is NERDTree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     " Open NERDTree if open a blank file
