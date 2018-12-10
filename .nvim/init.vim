@@ -1,92 +1,20 @@
 " - For Neovim:
-call plug#begin('~/.local/share/nvim/plugged')
-
-    "===--------------------------------------------
-    " Language Plugins
-    "===--------------------------------------------
-    Plug 'octol/vim-cpp-enhanced-highlight'                 " cpp highlight plugin
-    Plug 'rhysd/vim-clang-format'                           " clang-format
-    Plug 'pangloss/vim-javascript'                          " js plugin
-
-    "===--------------------------------------------
-    " Tool Plugins
-    "===--------------------------------------------
-    Plug 'scrooloose/nerdtree'                              " navigation tree
-    Plug 'yggdroot/indentline'                              " indent
-    Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }      " tagbar
-    Plug 'jiangmiao/auto-pairs'                             " auto pairs
-    Plug 'godlygeek/tabular'														" tabulize code
-    Plug 'fidian/hexmode'                                   " hexmode
-    Plug 'ap/vim-buftabline'                                " tab
-
-    "===--------------------------------------------
-    " Apperance Plugins
-    "===--------------------------------------------
-    Plug 'dracula/vim', { 'as': 'dracula' }  " dracula theme
-    Plug 'tomasiser/vim-code-dark'
-    Plug 'kristijanhusak/vim-hybrid-material'
-    Plug 'itchyny/lightline.vim'
-    Plug 'kien/rainbow_parentheses.vim'      " rainbow parentheses
+" Plugins Config {
+source ./basic.vim        " Basic configs
+source ./plugins.vim      " Plugins configs
+source ./languages.vim    " Languanges configs
+source ./keymap.vim       " Keymap configs
+source ./appearance.vim   " Appearance configs
+source ./status_line.vim  " Status bar configs
 " }
-
-call plug#end()
 
 "===--------------------------------------------
 " Control Configs
 "===--------------------------------------------
 
-" Key bindings                  " terminal{
-    " nmap <C-n> : NERDTreeToggle<CR> " NerdTree key binding
-    " nmap <C-t> :TagbarToggle<CR>    " tagbar key binding
-    " tnoremap <Esc> <C-\><C-n>       " exit insert mode of terminal emulator
-" }
-
-" language indention {
-    " default settings {
-        set shiftwidth=2    " indent is 2 spaces
-        set softtabstop=2   " indent is 2 spaces
-        set tabstop=2       " indent is 2 spaces
-        set expandtab       " always using tab
-    " }
-
-    " c/c++ 2-spaces {
-        autocmd Filetype c setlocal cindent
-        autocmd Filetype cpp setlocal cindent
-        set cinoptions=g-1
-    " }
-
-    " python {
-        autocmd Filetype javascript   setlocal ts=2 sw=2 sts=0
-        autocmd Filetype coffeescript setlocal ts=2 sw=2 sts=0
-        autocmd Filetype jade         setlocal ts=2 sw=2 sts=0
-    " }
-
-    " javascript and coffeescript 2-spaces {
-        autocmd Filetype javascript   setlocal ts=2 sw=2 sts=0
-        autocmd Filetype coffeescript setlocal ts=2 sw=2 sts=0
-        autocmd Filetype jade         setlocal ts=2 sw=2 sts=0
-    " }
-" }
-
-"===--------------------------------------------
-" Applearance Configs
-"===--------------------------------------------
-set termguicolors                          " set 256 true color
-set nu                                     " line number
-set cursorline                             " highlight row
-set cursorcolumn                           " highlight column
-set noshowmode                             " do not show mode
-syntax on                                  " set syntax highlight on
-
 " Color Scheme& Plugins {
-    set background=dark
 "   colorscheme {
-"     colorscheme codedark
-"     color dracula
-      colorscheme hybrid_material "{
       " font settings {
-          let g:enable_bold_font=1
-          "let g:enable_italic_font=1
         " }
       " }
 "   }
@@ -105,18 +33,6 @@ syntax on                                  " set syntax highlight on
     let g:cpp_concepts_highlight = 1
 " }
 
-" light line config {
-    let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
-      \ },
-      \ 'component': {
-      \   'helloworld': 'Cheers!'
-      \ },
-      \ }
-" }
 
 " NerdTree Config {
     nmap <C-m> : NERDTreeToggle<CR>
@@ -184,4 +100,11 @@ syntax on                                  " set syntax highlight on
   let g:javascript_conceal_static               = "•"
   let g:javascript_conceal_super                = "Ω"
   let g:javascript_conceal_arrow_function       = "⇒"
+" }
+
+" LSP Config {
+  let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+  \ }
+  nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
 " }
