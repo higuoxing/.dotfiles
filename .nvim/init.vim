@@ -1,110 +1,127 @@
-" - For Neovim:
-" Plugins Config {
-source ./basic.vim        " Basic configs
-source ./plugins.vim      " Plugins configs
-source ./languages.vim    " Languanges configs
-source ./keymap.vim       " Keymap configs
-source ./appearance.vim   " Appearance configs
-source ./status_line.vim  " Status bar configs
-" }
+call plug#begin('$HOME/.nvim/plugged')
+  Plug 'Shougo/denite.nvim'
+  Plug 'Shougo/defx.nvim'
+  Plug 'joshdick/onedark.vim'
+  Plug 'vim-airline/vim-airline'
 
-"===--------------------------------------------
-" Control Configs
-"===--------------------------------------------
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+call plug#end()
 
-" Color Scheme& Plugins {
-"   colorscheme {
-      " font settings {
-        " }
-      " }
-"   }
-" }
+" Basic configs {
 
-"===--------------------------------------------
-" Plugin Configs
-"===--------------------------------------------
+" Behavior configs {
 
-" Cpp Enhanced Highlight {
-    let g:cpp_class_scope_highlight = 1
-    let g:cpp_member_variable_highlight = 1
-    let g:cpp_class_decl_highlight = 1
-    let g:cpp_experimental_template_highlight = 1
-    " let g:cpp_experimental_simple_template_highlight = 1
-    let g:cpp_concepts_highlight = 1
-" }
+  set termguicolors   " Set 256-colors
+  set nu              " Set line number
+  syntax on           " Syntex highlighting
+  set noshowmode      " Since Vim-airline provide vim-mode status, we could disable the default mode display
+  colorscheme onedark " Use colorscheme onedark
+  set cursorline      " Highlight current line
+  set encoding=UTF-8  " Set UTF-8 enoding
+" } End Behavior configs
 
+" Keymap configs {
+  inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>" " Use <C-j> to select next option in menu
+  inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>" " Use <C-k> to select previoud option in menu
 
-" NerdTree Config {
-    nmap <C-m> : NERDTreeToggle<CR>
-    " Close NERDTree if there is only one tab and it is NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    " Open NERDTree if open a blank file
-    " autocmd vimenter * NERDTree            " Start NerdTree when open vim
-    " autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif  " open nerdtree if no file is specified
-" }
+  " Use <ESC> to enter normal mode
+  tnoremap <Esc> <C-\><C-n>
+  " Use <SPACE>-t to open a terminal
+  nnoremap <SPACE>t :below 20sp term://$SHELL<CR>i
+" } End Keymap configs
 
-" Buffer Config {
-    set hidden
-    nnoremap <C-n> :bnext <CR>
-    nnoremap <C-p> :bprev <CR>
-" }
+" } End Basic configs
 
-" Tagbar Config {
-    let g:tagbar_ctags_bin='/usr/local/bin/ctags'
-    nmap <C-t> :TagbarToggle<CR>
-" }
+" Vim-airline configs {
+  let g:airline_theme = 'onedark'
 
-" Terminal Config {
-     tnoremap <Esc> <C-\><C-n>
-     nnoremap <leader>o :below 10sp term://$SHELL<cr>i
-" }
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
 
-" Indent Config {
-    let g:indentLine_enabled = 1
-" }
+  let g:airline_symbols.linenr = ' ☰ '
+  let g:airline_symbols.branch = ' ⎇ '
+" } End Vim-airline configs
 
-" Rainbow Parentheses Config {
-    " let g:rbpt_max = 16
-    " let g:rbpt_loadcmd_toggle = 0
-    " let g:rbpt_colorpairs = [
-    "   \ ['brown',       'RoyalBlue3'],
-    "   \ ['red',         'firebrick3'],
-    "   \ ['Darkblue',    'SeaGreen3'],
-    "   \ ['darkgray',    'DarkOrchid3'],
-    "   \ ['darkgreen',   'firebrick3'],
-    "   \ ['darkcyan',    'RoyalBlue3'],
-    "   \ ['darkred',     'SeaGreen3'],
-    "   \ ['darkmagenta', 'DarkOrchid3'],
-    "   \ ['brown',       'firebrick3'],
-    "   \ ['gray',        'RoyalBlue3'],
-    "   \ ['black',       'SeaGreen3'],
-    "   \ ['darkmagenta', 'DarkOrchid3'],
-    "   \ ['Darkblue',    'firebrick3'],
-    "   \ ['darkgreen',   'RoyalBlue3'],
-    "   \ ['darkcyan',    'SeaGreen3'],
-    "   \ ['darkred',     'DarkOrchid3'],
-    "   \ ]
-    " au VimEnter * RainbowParenthesesToggle
-    " au Syntax * RainbowParenthesesLoadRound
-    " au Syntax * RainbowParenthesesLoadSquare
-    " au Syntax * RainbowParenthesesLoadBraces
-" }
-"
-" Javascript {
-  let g:javascript_conceal_function             = "ƒ"
-  let g:javascript_conceal_null                 = "ø"
-  let g:javascript_conceal_this                 = "@"
-  let g:javascript_conceal_return               = "⇚"
-  let g:javascript_conceal_NaN                  = "ℕ"
-  let g:javascript_conceal_static               = "•"
-  let g:javascript_conceal_super                = "Ω"
-  let g:javascript_conceal_arrow_function       = "⇒"
-" }
+" Defx configs {
+  call defx#custom#column('icon', {
+    \ 'directory_icon': '+',
+    \ 'opened_icon': '-'})
 
-" LSP Config {
-  let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-  \ }
-  nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
-" }
+  call defx#custom#option('_', {
+    \ 'columns': 'icon:indent:filename',
+    \ 'direction': 'topleft',
+    \ 'split': 'vertical',
+    \ 'winwidth': 30 })
+  nnoremap <space>ft :Defx -toggle<CR>
+  autocmd FileType defx call s:defx_init_settings()
+
+function! s:defx_init_settings() abort
+  nnoremap <silent><buffer><expr> l defx#do_action('drop')
+  nnoremap <silent><buffer><expr> o defx#do_action('open_or_close_tree')
+  nnoremap <silent><buffer><expr> r defx#do_action('rename')
+  nnoremap <silent><buffer><expr> d defx#do_action('remove')
+  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> q defx#do_action('quit')
+  nnoremap <silent><buffer><expr> ; defx#do_action('toggle_ignored_files')
+endfunction
+"} End Defx configs
+
+" Denite configs {
+  " Configs for Shougo/denite.nvim
+  " Change default prompt
+  call denite#custom#option('default', 'prompt', '❯')
+
+  call denite#custom#var('file/rec', 'command', ['fd', '--full-path'])
+
+  call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')     " Use <C-j> to select next option
+  call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap') " Use <C-k> to select previoud option
+  call denite#custom#map('insert', '<C-t>', '<denite:move_to_top>', 'noremap')           " Use <C-t> to move to top
+  call denite#custom#map('insert', '<C-m>', '<denite:move_to_middle>', 'noremap')        " Use <C-m> to move to middle
+  call denite#custom#map('insert', '<C-b>', '<denite:move_to_bottom>', 'noremap')        " Use <C-b> to move to bottom
+  call denite#custom#map('insert', '<ESC>', '<denite:enter_mode:normal>', 'noremap')     " Use <CR> to use selection
+  call denite#custom#map('insert', '<CR>', '<denite:do_action:default>', 'noremap')      " Use <ESC> to enter normal mode
+  call denite#custom#map('normal', '<ESC>', '<NOP>', 'noremap')
+  nnoremap <space>sf :Denite file/rec -default-action=vsplit<CR> " search files
+  nnoremap <space>sl :Denite line<CR>                            " search lines
+  nnoremap <space>sb :Denite buffer<CR>                          " search buffers
+
+  call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
+    \ [ '*~', '*.o', '*.exe', '*.bak',
+    \ '.DS_Store', '*.pyc', '*.sw[po]', '*.class',
+    \ '.hg/', '.git/', '.bzr/', '.svn/',
+    \ 'node_modules/', 'bower_components/', 'tmp/', 'log/', 'vendor/ruby',
+    \ '.idea/', 'dist/',
+    \ '.png', '.jpg', '.jpeg', '.gif',
+    \ 'build/',
+    \ '__pycache__/', 'venv/',
+    \ 'tags', 'tags-*', '/Library/Caches/', '$HOME/Library/Caches/'])
+" } End Denite configs
+
+" Languages configs {
+
+" Language client configs {
+  call coc#config('languageserver', {
+    \ "golang": {
+    \   "command": "gopls",
+    \   "args": [],
+    \   "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+    \   "filetypes": ["go"]
+    \ }
+    \})
+
+  call coc#config('languageserver', {
+    \ "ccls": {
+    \   "command": "ccls",
+    \   "filetypes": ["c", "cpp", "objc", "objcpp"],
+    \   "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+    \   "initializationOptions": {
+    \      "cache": {
+    \        "directory": "/tmp/ccls"
+    \      }
+    \    }
+    \ }})
+" } End Language client configs
+
+" } End Languages configs
