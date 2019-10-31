@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package spaceline-all-the-icons org-link-minor-mode nyan-mode lsp-ui dracula-theme cargo))))
+    (neotree yasnippet use-package racer nyan-mode no-littering lsp-mode dracula-theme doom-modeline company cargo all-the-icons-gnus))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
