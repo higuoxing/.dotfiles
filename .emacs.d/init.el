@@ -38,6 +38,10 @@
 (straight-use-package 'magit)
 (straight-use-package 'which-key)
 (which-key-mode)
+(straight-use-package 'powerline)
+(powerline-default-theme)
+
+;; Proof General
 (straight-use-package 'proof-general)
 
 ;; helm-mode on startup.
