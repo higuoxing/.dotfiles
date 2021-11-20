@@ -33,16 +33,35 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; My favorite dracula theme :-)
+(straight-use-package 'dracula-theme)
+(load-theme 'dracula t)
+
 (straight-use-package 'helm)
-(straight-use-package 'org)
+;; (straight-use-package 'org)
+(straight-use-package 'all-the-icons)
+(straight-use-package 'neotree)
 (straight-use-package 'magit)
 (straight-use-package 'which-key)
 (which-key-mode)
 (straight-use-package 'powerline)
 (powerline-default-theme)
+(straight-use-package 'nyan-mode)
+(setq nyan-animate-nyancat t)
+(nyan-mode)
 
-;; Proof General
-(straight-use-package 'proof-general)
+(straight-use-package 'editorconfig)
+(editorconfig-mode)
+
+(straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-ui)
+
+(straight-use-package 'ccls)
+(setq ccls-executable "/usr/bin/ccls")
+
+;; Languages
+(setq c-default-style "linux"
+      c-basic-offset 4)
 
 ;; helm-mode on startup.
 (helm-mode 1)
@@ -71,3 +90,10 @@
 (define-key magic-key "g" 'git-prefix)
 
 ;; helm-prefix
+
+;; neotree
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-smart-open t)
+(define-prefix-command 'neotree-prefix)
+(define-key magic-key "f" 'neotree-prefix)
+(define-key neotree-prefix "t" 'neotree-toggle)
