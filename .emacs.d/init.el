@@ -59,6 +59,9 @@
 (straight-use-package 'ccls)
 (setq ccls-executable "/usr/bin/ccls")
 
+(straight-use-package 'rust-mode)
+(setq rust-format-on-save t)
+
 ;; Languages
 (setq c-default-style "linux"
       c-basic-offset 4)
