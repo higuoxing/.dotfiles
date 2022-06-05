@@ -89,30 +89,36 @@ interval=5
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
-IFACE=wlan0
+IFACE=wlp0s20f3
 ## color=#00FF00
 interval=10
 ## separator=false
 
 [wifi]
-INTERFACE=wlan0
+INTERFACE=wlp0s20f3
 label=Wi-Fi 
 interval=10
 ## separator=false
 
 [bandwidth]
-INTERFACE=wlan0
+INTERFACE=wlp0s20f3
 interval=5
-min_width=IN 999K OUT 999K
+min_width=IN 99K OUT 99K
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-[cpu_usage]
-label=CPU 
-interval=10
-min_width=CPU 100.00%
+## [cpu_usage]
+## label=CPU 
+## interval=10
+## min_width=CPU 100.00%
 #separator=false
+
+[cpu_usage3]
+label=CPU 
+interval=3
+## command=~/.config/i3blocks/cpu_usage3/cpu.sh
+min_width= ⣾⣄ 100.00%
 
 [load_average]
 label=LOAD 
