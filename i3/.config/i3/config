@@ -251,13 +251,13 @@ bar {
 ## exec_always --no-startup-id ~/.config/i3/polybar.sh &
 
 ## Wallpaper
-exec --no-startup-id feh --bg-scale '/home/v/Pictures/simple-arch.png'
+exec --no-startup-id feh --bg-scale ~/.wallpapers/archlinux.png
 
 ## Tap to click
 exec --no-startup-id xinput set-prop "SYNA8006:00 06CB:CD8B Touchpad" "libinput Tapping Enabled" 1
 
 ## Natural scrolling
-exec --no-startup-id '/home/v/.local/bin/natural_scrolling'
+exec --no-startup-id '~/.local/bin/natural_scrolling'
 
 ## Volumn applet
 ## exec --no-startup-id pasystray
@@ -269,4 +269,4 @@ exec --no-startup-id bluetoothctl power on
 exec --no-startup-id fcitx5 --disable wayland,wayland-im -d && setxkbmap -layout us -option ctrl:nocaps
 
 ## Screenshot
-bindsym $mod+Print exec flameshot gui -p '/home/v/Pictures/screenshots'
+bindsym $mod+Print exec flameshot gui -p '~/.screenshots'
