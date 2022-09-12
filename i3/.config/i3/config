@@ -11,9 +11,10 @@
 
 set $mod Mod4
 
+## For i3-gaps
 for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 10
+gaps inner 5
+gaps outer 5
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
 
@@ -254,10 +255,13 @@ bar {
 exec --no-startup-id feh --bg-scale ~/.wallpapers/archlinux.png
 
 ## Tap to click
+## Lenovo X1 carbon
 exec --no-startup-id xinput set-prop "SYNA8006:00 06CB:CD8B Touchpad" "libinput Tapping Enabled" 1
+## DELL 5560
+exec --no-startup-id xinput set-prop "DLL0945:00 04F3:311C Touchpad" "libinput Tapping Enabled" 1
 
 ## Natural scrolling
-exec --no-startup-id '~/.local/bin/natural_scrolling'
+exec --no-startup-id ~/.local/bin/natural_scrolling
 
 ## Volumn applet
 ## exec --no-startup-id pasystray
